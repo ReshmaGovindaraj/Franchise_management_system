@@ -1,0 +1,11 @@
+{
+  "name": "franchise_management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm --prefix frontend start",
+    "start:frontend": "npm --prefix frontend start",
+    "start:backend": "npm --prefix backend run dev",
+    "install:all": "npm --prefix frontend install && npm --prefix backend install"
+  }
+}

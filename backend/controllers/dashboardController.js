@@ -161,8 +161,8 @@ exports.getBranchDashboard = async (req, res) => {
 exports.getBranchComparison = async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
-    const start = new Date(startDate) || new Date(new Date().setDate(new Date().getDate() - 30));
-    const end = new Date(endDate) || new Date();
+    const start = startDate ? new Date(startDate) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const end = endDate ? new Date(endDate) : new Date();
 
     const branchComparison = await Sale.aggregate([
       {

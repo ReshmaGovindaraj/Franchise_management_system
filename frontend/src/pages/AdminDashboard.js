@@ -19,8 +19,23 @@ function AdminDashboard({ user }) {
         ]);
 
         setDashboardData(dashResponse.data);
-        setChartData(chartResponse.data);
-        setBranchComparison(branchResponse.data);
+        // Normalize monthly trend data: convert _id {year, month} to a readable `month` string
+        const normalizedChart = (chartResponse.data || []).map(item => {
+          const year = item._id?.year || new Date().getFullYear();
+          const month = item._id?.month || 0;
+          // Format like "YYYY-MM"
+          const monthLabel = `${year}-${String(month).padStart(2, '0')}`;
+          return { ...item, month: monthLabel };
+        });
+
+        // Normalize branch comparison: extract branch name to `branchName`
+        const normalizedBranch = (branchResponse.data || []).map(item => ({
+          ...item,
+          branchName: item.branchDetails && item.branchDetails[0] ? item.branchDetails[0].name : 'N/A'
+        }));
+
+        setChartData(normalizedChart);
+        setBranchComparison(normalizedBranch);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }
@@ -75,7 +90,7 @@ function AdminDashboard({ user }) {
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="_id" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
@@ -89,7 +104,7 @@ function AdminDashboard({ user }) {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={branchComparison.slice(0, 5)}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="branchDetails[0].name" />
+                <XAxis dataKey="branchName" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
