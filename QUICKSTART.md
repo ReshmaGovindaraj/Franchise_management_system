@@ -25,9 +25,6 @@ cd backend
 npm install
 
 # Create .env file
-echo "MONGODB_URI=mongodb://localhost:27017/franchise-management
-PORT=5000
-SESSION_SECRET=franchise-secret-key-2024" > .env
 
 # Seed database with sample data
 npm run seed
