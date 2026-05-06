@@ -169,18 +169,6 @@ Application will open at `http://localhost:3000`
 - `GET /api/dashboard/sales-trend` - Sales trend analytics
 - `GET /api/dashboard/revenue-by-category` - Revenue breakdown
 
-## Sample Data
-
-### Demo Credentials
-
-**Admin Account**
-- Email: `admin@example.com`
-- Password: `password123`
-
-**Branch Manager Account**
-- Email: `manager@example.com`
-- Password: `password123`
-
 ## Database Models
 
 ### User
@@ -241,62 +229,7 @@ The system uses session-based authentication with the following flow:
 5. Admin reviews and approves/rejects
 6. Once approved, manager can fulfill request
 
-## Security Considerations
 
-- Passwords are hashed using bcryptjs
-- Session-based authentication for simplicity
-- Role-based access control (RBAC)
-- Input validation on both frontend and backend
-
-For production, consider:
-- JWT tokens instead of sessions
-- HTTPS/SSL encryption
-- Input sanitization
-- Rate limiting
 - CORS configuration
 - Database backups
 
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Mobile Support
-
-The UI is fully responsive and works on mobile devices, tablets, and desktops.
-
-## Troubleshooting
-
-### MongoDB Connection Error
-- Ensure MongoDB service is running
-- Check MONGODB_URI in .env file
-- Verify database credentials
-
-### Port Already in Use
-- Change PORT in .env (default 5000)
-- Or kill process using the port
-
-### CORS Error
-- Ensure proxy is set in frontend package.json
-- Check backend CORS configuration
-
-## Future Enhancements
-
-- Email notifications for approvals
-- SMS alerts for low stock
-- Advanced reporting with PDF export
-- Multi-language support
-- Two-factor authentication
-- Integration with payment gateways
-- Mobile app version
-- Real-time notifications
-
-## License
-
-ISC
-
-## Support
-
-For issues or questions, please refer to the documentation or contact the development team.
